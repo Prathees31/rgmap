@@ -1,6 +1,7 @@
 import React from 'react';
-import { Map, TileLayer, LayersControl } from 'react-leaflet'
-import { GoogleLayer } from 'react-leaflet-google-v2'
+import { Map, TileLayer, LayersControl,Marker, Popup } from 'react-leaflet'
+import { GoogleLayer } from 'react-leaflet-google-v2';
+import ReactLeafletGoogleLayer from "react-leaflet-google-layer";
 const { BaseLayer} = LayersControl;
 const key = 'AIzaSyBZwjtfxXrP_lYHayzysutAU8ucbrwky-E';
 const terrain = 'TERRAIN';
@@ -15,9 +16,18 @@ class GoogleMap extends React.Component {
   }
 
   render() {
+    const position = [13.0827, 80.2707];
     return (
-      <Map center={[13.0827, 80.2707]} zoom={2} zoomControl={true}>
-        <LayersControl position='topright'>
+      <Map center={position} zoom={13} zoomControl={true}>
+        <Marker position={[9.9252,78.1198]}>
+          <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
+        </Marker>
+        <ReactLeafletGoogleLayer
+            googleMapsLoaderConf={{ KEY:key }}
+            type={'roadmap'}
+          />
+        {/* <GoogleLayer googlekey={key}  maptype={road} /> */}
+        {/* <LayersControl position='topright'>
           <BaseLayer  name='OpenStreetMap.Mapnik'>
             <TileLayer  url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"/>
           </BaseLayer>
@@ -36,7 +46,7 @@ class GoogleMap extends React.Component {
           <BaseLayer  name='Google Maps with Libraries'>
             <GoogleLayer googlekey={key}  maptype={hydrid}  libraries={['geometry', 'places']} />
           </BaseLayer>        
-        </LayersControl>
+        </LayersControl> */}
       </Map>
     )
   }
