@@ -1,6 +1,7 @@
 import React from 'react';
 import PatientForm from './components/PatientForm/PatientForm';
 import DataTable from './components/DataTable/DataTable';
+import GoogleMap from "./components/GoogleMap/GoogleMap";
 import './App.css';
 function formatDate(date) {
   return date.toLocaleDateString();
@@ -94,6 +95,10 @@ class App extends React.Component {
             <div className="col-12">
               <h6>Patient List</h6>
               <DataTable data = {tableData} />
+            </div>
+            <div className="col-12">
+              <h6>Google Map</h6>
+              <GoogleMap />
             </div>
           </div>
       </div>
